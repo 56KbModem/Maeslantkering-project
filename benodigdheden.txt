@@ -1,0 +1,5 @@
+1x ATMega328p (arduino uno)
+2x MS5540C druksensoren
+2x Stepper Motor
+1x H-brug (L293D of SN754410NE of ULN2003)
+Nx Weerstanden
