@@ -1,5 +1,4 @@
 #include <Stepper.h>
-#include <Serial.h>
 
 #define MOTOR_REV 32 	// steppermotor internal step size
 #define FULL_ROT 2048	// stepper makes full rotation in 2048 steps
@@ -30,8 +29,6 @@ void loop()
 			case 2:
 				open_routine();
 				break;
-			default:
-				continue;
 		}
 	}
 }
