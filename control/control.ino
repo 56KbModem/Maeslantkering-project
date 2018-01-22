@@ -26,10 +26,12 @@ void loop()
 			case 'A':
 				Serial.println("CLOSE");
 				close_routine();
+				Serial.flush();
 				break;
 			case 'B':
 				Serial.println("OPEN");
 				open_routine();
+				Serial.flush();
 				break;
 		}
 	}
