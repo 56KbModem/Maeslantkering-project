@@ -3,6 +3,13 @@
 In deze README vindt u de technische documentatie
 en gebruikte bronnen voor het IDP project.
 
+## Index
+* [Technische documentatie](https://github.com/56KbModem/Maeslantkering-project#technische-documentatie)
+  * [Model Maeslantkering](https://github.com/56KbModem/Maeslantkering-project#model-maeslantkering)
+  * [Watermeting](https://github.com/56KbModem/Maeslantkering-project#watermeting)
+  * [Serieel protocol](https://github.com/56KbModem/Maeslantkering-project#serieel-protocol)
+* [Bronnen](https://github.com/56KbModem/Maeslantkering-project#bronnen)
+
 ## Technische documentatie
 
 #### Model Maeslantkering
@@ -95,3 +102,18 @@ in Python 3.
 
 Een bericht wordt afgesloten met een carriage return (`\r`) gevolgd
 door een newline (`\n`).
+
+## Bronnen
+
+* [serial reference](https://www.arduino.cc/reference/en/language/functions/communication/serial/)
+
+	Deze referentiegids is gebruikt voor de Arduino Serial.h softwarebibliotheek.
+
+* [The C Programming Language](https://en.wikipedia.org/wiki/The_C_Programming_Language)
+
+	De tweede editie van boek is gebruikt door Nick als referentie voor het programmeren in C.
+	Auteurs: Brian Kernighan & Dennis Ritchie.
+
+* [PySerial documentation](http://pyserial.readthedocs.io)
+
+	Deze documentatie is gebruikt als naslagwerk voor de PySerial softwarebibliotheek.
