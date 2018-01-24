@@ -111,7 +111,7 @@ door een newline (`\n`).
 
 * [The C Programming Language](https://en.wikipedia.org/wiki/The_C_Programming_Language)
 
-	De tweede editie van boek is gebruikt door Nick als referentie voor het programmeren in C.
+	De tweede editie van dit boek is gebruikt door Nick als referentie voor het programmeren in C.
 	Auteurs: Brian Kernighan & Dennis Ritchie.
 
 * [PySerial documentation](http://pyserial.readthedocs.io)

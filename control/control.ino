@@ -7,18 +7,33 @@
 Stepper my_stepper1(MOTOR_REV, 8, 10, 9, 11);
 Stepper my_stepper2(MOTOR_REV, 4, 6, 5, 7);
 
-int serial_data;
+int sensor = A0;	// anolog input water sensor
+
+int serial_data;	// incoming serial data
 
 void setup()
 {
 	my_stepper1.setSpeed(400);	// set speed of
 	my_stepper2.setSpeed(400);	// steppers in RPM
 
+	pinMode(sensor, INPUT);		// water sensor is analog input
+
 	Serial.begin(9600);		// wait for client serial conn
 }
 
 void loop()
 {
+	/* take a measurement at a site */
+	char measurement[8] = "RD ";
+	char water_level_str[3];
+	int water_level = measure_water_level(sensor);
+	
+	itoa(water_level, water_level_str, 10);
+	strncat(measurement, water_level_str, 3);
+
+	Serial.println(measurement);
+
+	/* read command to open or close*/
 	if (Serial.available() > 0){
 		serial_data = Serial.read();
 
@@ -69,4 +84,16 @@ void open_routine()
 		my_stepper2.step(1);
 		delay(30);
 	}
+}
+
+/* This function measures the water
+   level as an analog input, converts
+   it to centimeters and returns
+   that value as an int*/
+int measure_water_level(int sensor)
+{
+	int water_level = analogRead(sensor);
+	water_level = map(water_level, 0, 1023, 200, 300); // convert to cm.
+
+	return water_level;
 }
