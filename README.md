@@ -8,6 +8,7 @@ en gebruikte bronnen voor het IDP project.
   * [Model Maeslantkering](https://github.com/56KbModem/Maeslantkering-project#model-maeslantkering)
   * [Watermeting](https://github.com/56KbModem/Maeslantkering-project#watermeting)
   * [Serieel protocol](https://github.com/56KbModem/Maeslantkering-project#serieel-protocol)
+  * [De Client](https://github.com/56KbModem/Maeslantkering-project#de-client)
 * [Bronnen](https://github.com/56KbModem/Maeslantkering-project#bronnen)
 
 ## Technische documentatie
@@ -41,9 +42,10 @@ De waterhoogte wordt gemeten door middel van een vlotter met
 ingebouwde magnetische weerstand. door het spanningsverschil over de
 plus- en minpool te meten kan de waterhoogte op schaal berekend worden.
 
-Door het gebruik van een schakelaar kan aangegeven worden op welk punt er
-gemeten wordt. De kering moet dicht gaan als de waterstand 3 meter boven NAP
-bij Rotterdam komt, of 2,9 meter boven NAP bij Dordrecht.
+Door het gebruik van een zelf ontworpen protocol kan het meetpunt
+gewisseld worden, deze begint in Rotterdam waar de kering dicht gaat
+bij een waterstand van 3 meter boven NAP. Het andere meetpunt, Dordrecht,
+zal de kering dicht laten gaan bij een waterstand van 2,9 meter boven NAP
 
 #### Watermeting
 
@@ -58,7 +60,7 @@ de in de Arduino softwarebibliotheek ingebouwde `map()` functie kunnen we deze
 waardes omzetten naar een schaal tussen de 200 en 300. Deze schaal van 100 stappen
 beschouwen wij als centimeters.
 
-Een digitale schakelaar bepaald de 'plek' waar de meting plaatsvindt. Wat deze
+Een serieel commando bepaald de 'plek' waar de meting plaatsvindt. Wat deze
 eigenlijk doet is een variabele aanpassen die aangeeft of er bij Rotterdam of bij
 Dordrecht gemeten wordt. De waarde van deze variabele wordt meegezonden over de
 seriële verbinding samen met de gemeten waterstand.
@@ -87,7 +89,8 @@ Omdat zo een verbinding zijn karakters bit per bit verzend is het veilig
 om de uit te wisselen berichten zo kort mogelijk te houden. Het commando om
 de kering te sluiten is een ASCII karakter `A`. Om hem te openen het ASCII
 karakter `B`. De waterstand wordt doorgegeven als `XX YYY` waarbij `XX` de
-meetplek aangeeft (RD of DD) en `YYY` de waterhoogte in centimeters.
+meetplek aangeeft (RD of DD) en `YYY` de waterhoogte in centimeters. Het
+ASCII karakter `C` geeft aan dat er van meetplek gewisseld moet worden
 
 Voorbeeld:
 
@@ -102,6 +105,18 @@ in Python 3.
 
 Een bericht wordt afgesloten met een carriage return (`\r`) gevolgd
 door een newline (`\n`).
+
+#### De Client
+
+De client, het tussenstation tussen de Arduino en de servers dient er voor
+de data van de Arduino die over de seriële lijn binnenkomt door te geven aan
+de servers. Daarna zal hij bij het ontvangen van een commando deze doorzetten
+naar de Arduino. 
+
+De client kijkt ook of de hoofd server te bereiken is. Als
+dit niet zo is dan zal hij proberen contact te maken met de failover server
+
+De client houdt ook loggegevens bij.
 
 ## Bronnen
 
