@@ -1,0 +1,37 @@
+#!/bin/sh
+
+case "$1" in
+  start)
+	if [ $2 = 'client' ]
+	then
+		python3 /var/client.py
+	elif [ $2 = 'server' ]
+	then
+		python3 /var/Server.py
+	else
+		echo "Invalid start option (after start, type client or server), warning: case sensitive"
+		echo "Usage: /etc/init.d/initscript {start|stop|restart} {client|server}"
+	fi
+	;;
+  stop)
+	echo "Stopping Python3 script ..."
+	pkill python3
+	;;
+  restart)
+	stop
+	start
+	;;
+  *)
+	echo "Invalid or unsupported syntax:"
+	echo "Usage: /etc/init.d/initscript {start|stop|restart} {client|server}"
+	exit 1
+	;;
+esac
+exit 0
+
+
+# Bronnen:
+# http://www.pietervanos.net/knowledge/start-python-script-from-init-d/
+# http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_02.html
+# https://www.howtogeek.com/howto/linux/kill-linux-processes-easier-with-pkill/
+# geraadpleegd op 25-1-2018
