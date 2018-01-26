@@ -23,32 +23,53 @@ void setup()
 
 void loop()
 {
-	/* take a measurement at a site */
-	char measurement[8] = "RD ";
-	char water_level_str[3];
-	int water_level = measure_water_level(sensor);
-	
-	itoa(water_level, water_level_str, 10);
-	strncat(measurement, water_level_str, 3);
+	/* initialize measuring place */
+	int place = 1;
+	char rotterdam[4] = "RD ";
+	char dordrecht[4] = "DD ";
 
-	Serial.println(measurement);
-
-	/* read command to open or close*/
-	if (Serial.available() > 0){
-		serial_data = Serial.read();
-
-		switch(serial_data){
-			case 'A':
-				Serial.println("CLOSE");
-				close_routine();
-				Serial.flush();
-				break;
-			case 'B':
-				Serial.println("OPEN");
-				open_routine();
-				Serial.flush();
-				break;
+	while (1){
+		/* take a measurement at a site */
+		char measurement[8];
+		if (place == 1){
+			strcpy(measurement, rotterdam);
 		}
+		else{
+			strcpy(measurement, dordrecht);
+		}
+		char water_level_str[3];
+		int water_level = measure_water_level(sensor);
+		
+		itoa(water_level, water_level_str, 10);
+		strncat(measurement, water_level_str, 3);
+
+		Serial.println(measurement);
+
+		/* read command to open or close*/
+		if (Serial.available() > 0){
+			serial_data = Serial.read();
+
+			switch(serial_data){
+				case 'A':
+					Serial.println("CLOSE");
+					close_routine();
+					Serial.flush();
+					break;
+				case 'B':
+					Serial.println("OPEN");
+					open_routine();
+					Serial.flush();
+					break;
+				case 'C':
+					if (place == 1){
+						place = 0;
+					}
+					else if (place == 0){
+						place = 1;
+					}
+			}
+		}
+		delay(1500); // wait 1.5 seconds
 	}
 }
 
@@ -97,3 +118,4 @@ int measure_water_level(int sensor)
 
 	return water_level;
 }
+
