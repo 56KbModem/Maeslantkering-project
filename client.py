@@ -30,12 +30,20 @@ ser_conn = serial.Serial("/dev/ttyUSB0")
 s.connect(server1)
 
 while True:
+	# get serial data and send to server
 	ser_in = ser_conn.readline()
-	print(ser_in)
+	s.sendall(ser_in)
 
-	s.send(b"hello!\n")
+	# set timeout to receive command (2 seconds)
+	s.settimeout(1.5)
 
-	data = s.recv(512)
+	# get command from server
+	# if it takes too long, just continue
+	try:
+		data = s.recv(512)
+	except socket.timeout:
+		continue
+
 	print(data)
 
 	if data == b"A\n": # close command
@@ -46,3 +54,4 @@ while True:
 		log_event("kering gaat open")
 	else:
 		log_event("Unkown message received: {}".format(data.decode()))
+		continue
