@@ -52,6 +52,9 @@ while True:
 	elif data == b"B\n": # open command
 		ser_conn.write(b"B")
 		log_event("kering gaat open")
+	elif data == b"C\n": # change measuring place
+		ser_conn.write(b"C")
+		log_event("Wissel van meetpunt")
 	else:
 		log_event("Unkown message received: {}".format(data.decode()))
 		continue
