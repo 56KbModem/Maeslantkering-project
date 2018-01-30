@@ -53,10 +53,15 @@ def client_connection(connect):
 
         updates = bot.get_updates()
         prints = [u.message.text for u in updates]
-        last_command = len(prints) - 1
-        if prints[last_command] == "WISSEL_METING":
+        message_ids = [u.message.message_id for u in updates]
+
+        last_command = len(prints) -1
+        last_message_id = len(message_ids) -1
+
+        if prints[last_command] == "WISSEL_METING" and message_ids[last_message_id] >= last_message:
             reply = "C"
             message = "Wissel van meetpunt"
+            last_message += 1
         connect.sendall(str.encode(reply))
         ### send the update to telegram
         tele_protocol = "https://api.telegram.org/bot520998188:AAEOroYyol_A6A2yIFuzDrgMUZTlX0Y-Ofc/sendMessage?chat_id=409845558&text="
@@ -64,6 +69,7 @@ def client_connection(connect):
 
     connect.close()
 
+last_message = 1
 while True:
         connect, address = s.accept()
         print('connect from: {0}:{1}'.format(address[0], str(address[1])))
