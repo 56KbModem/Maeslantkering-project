@@ -2,12 +2,14 @@
 import socket
 import requests
 import telegram
+import time
 
 HOST = '127.0.0.1'
 PORT = 10000
 
-bot = telegram.Bot(token= '463188905:AAGm_FknjisEtW68uuNDfAOzBvFI_fdw6GU')
+bot = telegram.Bot(token= '450025897:AAENI8aZHtNBBthXaSWKQrKiQuIhVGcR7IA')
 chat_id = bot.get_updates()[-1].message.chat_id
+last_message_id_lijst = bot.get_updates()[-1].message.message_id
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 try:
@@ -69,7 +71,21 @@ def client_connection(connect):
 
     connect.close()
 
-last_message = 1
+def SendMessageBack():
+    lijst = [last_message_id_lijst]
+    while True:
+        last_message_id = bot.get_updates()[-1].message.message_id
+        last_message = bot.get_updates()[-1].message.text
+        time.sleep(2)
+        if last_message == 'WISSEL_MEETPUNT' and lijst == [last_message_id - 1]:
+            bot.send_message(chat_id=chat_id, text='Meetpunt gewisseld')
+            reply = 'C'
+            lijst.clear()
+        elif last_message != 'WISSEL_MEETPUNT':
+            lijst.clear()
+            lijst.append(last_message_id)
+
+SendMessageBack()
 while True:
         connect, address = s.accept()
         print('connect from: {0}:{1}'.format(address[0], str(address[1])))
