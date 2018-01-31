@@ -1,0 +1,43 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          /home/pi/client.py
+# Required-Start:    networking
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start maeslantkering client daemon at boot time
+# Description:       Enable service provided by daemon.
+### END INIT INFO
+
+NAME=client
+DAEMON=/home/pi/client.py
+PIDFILE=/var/run/client.pid
+
+case "$1" in
+  start)
+	echo "Starting client script..."
+	python3 /home/pi/client.py
+
+	;;
+  stop)
+	echo "Stopping client script ..."
+	pkill python3
+	;;
+  restart)
+	stop
+	start
+	;;
+  *)
+	echo "Invalid or unsupported syntax:"
+	echo "Usage: /etc/init.d/initscript {start|stop|restart}"
+	exit 1
+	;;
+esac
+exit 0
+
+
+# Bronnen:
+# http://www.pietervanos.net/knowledge/start-python-script-from-init-d/
+# http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_02.html
+# https://www.howtogeek.com/howto/linux/kill-linux-processes-easier-with-pkill/
+# geraadpleegd op 25-1-2018
