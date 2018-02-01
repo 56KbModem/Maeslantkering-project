@@ -188,3 +188,23 @@ ook gestart zodra de Raspberry Pi's aangezet worden.
 * [PySerial documentation](http://pyserial.readthedocs.io)
 
 	Deze documentatie is gebruikt als naslagwerk voor de PySerial softwarebibliotheek.
+
+## Auteurschap 
+
+* [Wouter Legué](https://github.com/wleghu)
+  *	INIT scripts (client en server)
+  *	IP address range
+  *	configureren Raspberry Pi
+* [Chester de Lang](https://github.com/Chesterdelang)
+  * API interface telegram bot (in server.py)
+* [Mohamad Atwa](https://github.com/mohamadat)
+  *	Server (server.py)
+* [Nick Snel](https://github.com/56KbModem)
+  *	Model Maeslantkering
+  *	Programmeren Arduino microcontroller (control.ino)
+  *	Serieel protocol (in control.ino)
+  *	Client (client.py)
+  *	Redundancy (in client.py)
+  *	Logging (in client.py)
+  *	Deze README
+
