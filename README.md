@@ -82,7 +82,7 @@ en dus de waterhoogte aflezen.
 Omdat de microcontroller natuurlijk digitaal is zal er op de analoge input
 een meting tussen de 0 en 1023 binnenkomen afhankelijk van het voltage. Dankzij
 de in de Arduino softwarebibliotheek ingebouwde `map()` functie kunnen we deze 
-waardes omzetten naar een schaal tussen de 280 en 310. Deze schaal van 100 stappen
+waardes omzetten naar een schaal tussen de 280 en 310. Deze schaal van 40 stappen
 beschouwen wij als centimeters.
 
 Een serieel commando bepaald de 'plek' waar de meting plaatsvindt. Wat deze

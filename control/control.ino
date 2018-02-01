@@ -114,7 +114,7 @@ void open_routine()
 int measure_water_level(int sensor)
 {
 	int water_level = analogRead(sensor);
-	water_level = map(water_level, 500, 670, 280, 310); // convert to cm.
+	water_level = map(water_level, 0, 650, 280, 310); // convert to cm.
 
 	return water_level;
 }
