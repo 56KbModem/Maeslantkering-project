@@ -122,10 +122,10 @@ De client houdt ook loggegevens bij.
 ## Schakeldiagram kering
 ![Main menu](https://github.com/56KbModem/Maeslantkering-project/blob/master/src/img/kering_diagram.png?raw=true)
 
-Blauw: controller
-Rood: +5 Volt
-Zwart: Aarde
-Geel: Analoge input
+*	Blauw: controller
+*	Rood: +5 Volt
+*	Zwart: Aarde
+*	Geel: Analoge input
 
 ## Bronnen
 
