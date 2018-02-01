@@ -9,6 +9,7 @@ en gebruikte bronnen voor het IDP project.
   * [Watermeting](https://github.com/56KbModem/Maeslantkering-project#watermeting)
   * [Serieel protocol](https://github.com/56KbModem/Maeslantkering-project#serieel-protocol)
   * [De Client](https://github.com/56KbModem/Maeslantkering-project#de-client)
+  * [INIT script](https://github.com/56KbModem/Maeslantkering-project#init-script)
 * [Schakeldiagram kering](https://github.com/56KbModem/Maeslantkering-project#schakeldiagram-kering)
 * [Bronnen](https://github.com/56KbModem/Maeslantkering-project#bronnen)
 
@@ -39,7 +40,7 @@ De motoren zijn vastgeschroefd op de onderkant van de deksel van
 de kist zodat op de bovenkant van de deksel de armen en deuren van 
 de Maeslantkering gemonteerd zijn.
 
-De waterhoogte wordt gemeten door middel van een vlotter met 
+De waterhoogte wordt gemeten door middel van een sensor met 
 ingebouwde magnetische weerstand. door het spanningsverschil over de
 plus- en minpool te meten kan de waterhoogte op schaal berekend worden.
 
@@ -50,9 +51,9 @@ zal de kering dicht laten gaan bij een waterstand van 2,9 meter boven NAP
 
 #### Watermeting
 
-De vlotter heeft een weerstand die afhankelijk van de hoogte van het waterpeil
-de weerstand verhoogt. Door een pool van de vlotter op +5 volt te zetten en de
-andere op een analoge input van de Arduino kunnen we het verschil in spanning
+De watersensor heeft een weerstand die afhankelijk van de hoogte van het waterpeil
+de weerstand verhoogt. Door een pool van de sensor op +5 volt te zetten en de
+signaalingang op een analoge input van de Arduino kunnen we het verschil in spanning
 en dus de waterhoogte aflezen.
 
 Omdat de microcontroller natuurlijk digitaal is zal er op de analoge input
@@ -115,12 +116,31 @@ de servers. Daarna zal hij bij het ontvangen van een commando deze doorzetten
 naar de Arduino. 
 
 De client kijkt ook of de hoofd server te bereiken is. Als
-dit niet zo is dan zal hij proberen contact te maken met de failover server
+dit niet zo is dan zal hij proberen contact te maken met de failover server.
+Als de failover server ook wegvalt dan probeert hij de eerste weer enzovoort.
+
+Het is wel belangrijk dat de client de eerste keer dat hij verbinding
+probeert te maken een verbinding met een van de twee servers krijgt.
+Als er helemaal geen verbinding gemaakt kan worden dan treed er een timeout op.
 
 De client houdt ook loggegevens bij.
 
+#### INIT script
+
+Op de client en servers draaien ook UNIX init scripts, door deze scripts
+kan de client en server als UNIX daemon gebruikt worden. dat wil zeggen
+dat zowel client als server nu een service zijn die beheerd kunnen worden
+met het `service` commando.
+
+De client en server init scripts kunnen drie parameters verwerken,
+`start` om de service te starten, `stop` om de service te stoppen en
+`restart` om te herstarten.
+
+Dankzij deze scripts worden de python scripts `client.py` en `server.py`
+ook gestart zodra de Raspberry Pi's aangezet worden.
+
 ## Schakeldiagram kering
-![Main menu](https://github.com/56KbModem/Maeslantkering-project/blob/master/src/img/kering_diagram.png?raw=true)
+![Diagram](https://github.com/56KbModem/Maeslantkering-project/blob/master/src/img/kering_diagram.png?raw=true)
 
 *	Blauw: controller
 *	Rood: +5 Volt
