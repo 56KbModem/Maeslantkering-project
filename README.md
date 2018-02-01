@@ -181,6 +181,10 @@ ook gestart zodra de Raspberry Pi's aangezet worden.
 
 	Deze referentiegids is gebruikt voor de Arduino Serial.h softwarebibliotheek.
 
+* [stepper reference](https://www.arduino.cc/en/Reference/Stepper)
+
+	Deze referentiegids is gebruikt voor de Arduino Stepper.h softwarebibliotheek.
+
 * [The C Programming Language](https://en.wikipedia.org/wiki/The_C_Programming_Language)
 
 	De tweede editie van dit boek is gebruikt door Nick als referentie voor het programmeren in C.
