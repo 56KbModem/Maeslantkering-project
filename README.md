@@ -14,6 +14,7 @@ gebruikte bronnen voor het IDP project.
   * [INIT script](https://github.com/56KbModem/Maeslantkering-project#init-script)
 * [Schakeldiagram kering](https://github.com/56KbModem/Maeslantkering-project#schakeldiagram-kering)
 * [Bronnen](https://github.com/56KbModem/Maeslantkering-project#bronnen)
+* [Auteurschap](https://github.com/56KbModem/Maeslantkering-project#auteurschap)
 
 ## Requirementsanalyse
 
