@@ -9,6 +9,7 @@ en gebruikte bronnen voor het IDP project.
   * [Watermeting](https://github.com/56KbModem/Maeslantkering-project#watermeting)
   * [Serieel protocol](https://github.com/56KbModem/Maeslantkering-project#serieel-protocol)
   * [De Client](https://github.com/56KbModem/Maeslantkering-project#de-client)
+* [Schakeldiagram kering](https://github.com/56KbModem/Maeslantkering-project#schakeldiagram-kering)
 * [Bronnen](https://github.com/56KbModem/Maeslantkering-project#bronnen)
 
 ## Technische documentatie
@@ -117,6 +118,13 @@ De client kijkt ook of de hoofd server te bereiken is. Als
 dit niet zo is dan zal hij proberen contact te maken met de failover server
 
 De client houdt ook loggegevens bij.
+
+## Schakeldiagram kering
+![alt text](https://github.com/56KbModem/Maeslantkering-project/kering_diagram.png)
+Blauw: controller
+Rood: +5 Volt
+Zwart: Aarde
+Geel: Analoge input
 
 ## Bronnen
 
