@@ -120,7 +120,7 @@ dit niet zo is dan zal hij proberen contact te maken met de failover server
 De client houdt ook loggegevens bij.
 
 ## Schakeldiagram kering
-![alt text](https://github.com/56KbModem/Maeslantkering-project/kering_diagram.png)
+![Main menu](https://github.com/56KbModem/Maeslantkering-project/kering_diagram.png?raw=true)
 Blauw: controller
 Rood: +5 Volt
 Zwart: Aarde
