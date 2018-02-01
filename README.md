@@ -1,7 +1,8 @@
 # IDP-Project Maeslantkering Groep 1 V1J
 
-In deze README vindt u de technische documentatie
-en gebruikte bronnen voor het IDP project.
+In deze README vindt u de requirementsanalyse, 
+technische documentatie, het schakeldiagram en
+gebruikte bronnen voor het IDP project.
 
 ## Index
 * [Requirementsanalyse](https://github.com/56KbModem/Maeslantkering-project#requirementsanalyse)
@@ -18,16 +19,22 @@ en gebruikte bronnen voor het IDP project.
 
 Het product moet aan de volgende eisen voldoen:
 *	Waterhoogte meten op twee punten
-  *	Oplossing: Er is meermaals getest met een analoge watersensor, de analoge input is vertaald naar een waarde in centimeters, via een serieel protocol kan van meetpunt gewisseld worden. Er kan dus op twee punten gemeten worden maar er was op de microcontroller nog maar plaats voor 1 sensor. Er is gekozen voor een Arduino omdat de aansturing makkelijker is, er draait maar 1 programma en er is geen operating system. Tevens heeft de Arduino een ingebouwde ADC (analoog naar digitaal converter), deze mist op bijvoorbeeld de Raspberry Pi.
-  *	Voldaan?: JA
+
+	Oplossing: Er is meermaals getest met een analoge watersensor, de analoge input is vertaald naar een waarde in centimeters, via een serieel protocol kan van meetpunt gewisseld worden. Er kan dus op twee punten gemeten worden maar er was op de microcontroller nog maar plaats voor 1 sensor. Er is gekozen voor een Arduino omdat de aansturing makkelijker is, er draait maar 1 programma en er is geen operating system. Tevens heeft de Arduino een ingebouwde ADC (analoog naar digitaal converter), deze mist op bijvoorbeeld de Raspberry Pi.
+
+  	Voldaan?: JA
 
 *	Kering openen, sluiten.
-  *	Oplossing: Voor het openen/sluiten van de kering is gebruik gemaakt van stappermotoren. In tegenstelling tot servo motoren hebben stappermotoren meer koppel maar een lagere snelheid, omdat nauwkeurigheid belangrijker is dan snelheid heb ik voor stappermotoren gekozen. De kering sluit bijna volledig (er is ruimte zodat deze niet kapot gaat) en wanneer hij open gaat neemt hij dezelfde positie weer in. De kering opent of sluit pas na commando van de controleposten (servers, ontwikkeld door SIE).
-  *	Voldaan?: JA
+
+	Oplossing: Voor het openen/sluiten van de kering is gebruik gemaakt van stappermotoren. In tegenstelling tot servo motoren hebben stappermotoren meer koppel maar een lagere snelheid, omdat nauwkeurigheid belangrijker is dan snelheid heb ik voor stappermotoren gekozen. De kering sluit bijna volledig (er is ruimte zodat deze niet kapot gaat) en wanneer hij open gaat neemt hij dezelfde positie weer in. De kering opent of sluit pas na commando van de controleposten (servers, ontwikkeld door SIE).
+
+  	Voldaan?: JA
 
 *	Redundantie
-  *	Oplossing: Eigenlijk een opdracht voor SIE, maar ik heb deze op mij genomen omdat het makkelijker te implementeren was van het model af richting de netwerk infrastructuur. Er wordt gebruik gemaakt van een Raspberry Pi die contact legt met een van de twee controleposten (servers). Als hij met de ene geen connectie krijgt of de connectie valt weg, dan schakelt hij automatisch over naar het volgende IP-adres. Er moet natuurlijk wel 1 van de twee servers klaar zijn om de connectie te verwerken anders schakelt de client uit.
-  *	Voldaan?: JA
+
+ 	Oplossing: Eigenlijk een opdracht voor SIE, maar ik heb deze op mij genomen omdat het makkelijker te implementeren was van het model af richting de netwerk infrastructuur. Er wordt gebruik gemaakt van een Raspberry Pi die contact legt met een van de twee controleposten (servers). Als hij met de ene geen connectie krijgt of de connectie valt weg, dan schakelt hij automatisch over naar het volgende IP-adres. Er moet natuurlijk wel 1 van de twee servers klaar zijn om de connectie te verwerken anders schakelt de client uit.
+
+ 	Voldaan?: JA
 
 ## Technische documentatie
 
