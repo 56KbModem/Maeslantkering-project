@@ -4,6 +4,7 @@ In deze README vindt u de technische documentatie
 en gebruikte bronnen voor het IDP project.
 
 ## Index
+* [Requirementsanalyse](https://github.com/56KbModem/Maeslantkering-project#requirementsanalyse)
 * [Technische documentatie](https://github.com/56KbModem/Maeslantkering-project#technische-documentatie)
   * [Model Maeslantkering](https://github.com/56KbModem/Maeslantkering-project#model-maeslantkering)
   * [Watermeting](https://github.com/56KbModem/Maeslantkering-project#watermeting)
@@ -12,6 +13,21 @@ en gebruikte bronnen voor het IDP project.
   * [INIT script](https://github.com/56KbModem/Maeslantkering-project#init-script)
 * [Schakeldiagram kering](https://github.com/56KbModem/Maeslantkering-project#schakeldiagram-kering)
 * [Bronnen](https://github.com/56KbModem/Maeslantkering-project#bronnen)
+
+## Requirementsanalyse
+
+Het product moet aan de volgende eisen voldoen:
+*	Waterhoogte meten op twee punten
+  *	Oplossing: Er is meermaals getest met een analoge watersensor, de analoge input is vertaald naar een waarde in centimeters, via een serieel protocol kan van meetpunt gewisseld worden. Er kan dus op twee punten gemeten worden maar er was op de microcontroller nog maar plaats voor 1 sensor. Er is gekozen voor een Arduino omdat de aansturing makkelijker is, er draait maar 1 programma en er is geen operating system. Tevens heeft de Arduino een ingebouwde ADC (analoog naar digitaal converter), deze mist op bijvoorbeeld de Raspberry Pi.
+  *	Voldaan?: JA
+
+*	Kering openen, sluiten.
+  *	Oplossing: Voor het openen/sluiten van de kering is gebruik gemaakt van stappermotoren. In tegenstelling tot servo motoren hebben stappermotoren meer koppel maar een lagere snelheid, omdat nauwkeurigheid belangrijker is dan snelheid heb ik voor stappermotoren gekozen. De kering sluit bijna volledig (er is ruimte zodat deze niet kapot gaat) en wanneer hij open gaat neemt hij dezelfde positie weer in. De kering opent of sluit pas na commando van de controleposten (servers, ontwikkeld door SIE).
+  *	Voldaan?: JA
+
+*	Redundantie
+  *	Oplossing: Eigenlijk een opdracht voor SIE, maar ik heb deze op mij genomen omdat het makkelijker te implementeren was van het model af richting de netwerk infrastructuur. Er wordt gebruik gemaakt van een Raspberry Pi die contact legt met een van de twee controleposten (servers). Als hij met de ene geen connectie krijgt of de connectie valt weg, dan schakelt hij automatisch over naar het volgende IP-adres. Er moet natuurlijk wel 1 van de twee servers klaar zijn om de connectie te verwerken anders schakelt de client uit.
+  *	Voldaan?: JA
 
 ## Technische documentatie
 
@@ -59,7 +75,7 @@ en dus de waterhoogte aflezen.
 Omdat de microcontroller natuurlijk digitaal is zal er op de analoge input
 een meting tussen de 0 en 1023 binnenkomen afhankelijk van het voltage. Dankzij
 de in de Arduino softwarebibliotheek ingebouwde `map()` functie kunnen we deze 
-waardes omzetten naar een schaal tussen de 200 en 300. Deze schaal van 100 stappen
+waardes omzetten naar een schaal tussen de 280 en 310. Deze schaal van 100 stappen
 beschouwen wij als centimeters.
 
 Een serieel commando bepaald de 'plek' waar de meting plaatsvindt. Wat deze
@@ -104,6 +120,10 @@ DD 296 (waterhoogte 2,96 meter boven NAP. Meetpunt Dordrecht)
 Omdat de controleposten geprogrammeerd worden in Python 3 zullen deze ASCII 
 karakters gedecodeerd worden naar UTF-8 strings, de interne stringrepresentatie
 in Python 3.
+
+Als er een sluiting plaats vindt zal het controlewoord `CLOSE` meegestuurd worden,
+bij openen is dat `OPEN`. Aan de hand van deze controlewoorden weten de controleposten
+de status van de kering.
 
 Een bericht wordt afgesloten met een carriage return (`\r`) gevolgd
 door een newline (`\n`).
